@@ -13,8 +13,6 @@ export const getEmployees = createAsyncThunk("employee/getEmployees", async () =
 
 export const addEmployee = createAsyncThunk("employee/addEmployee", async (employee: IEmployee) => {
     try {
-        // convert checkedbox on to boolean
-        employee.isActive = employee.isActive.toString() === "on" ? true : false
         const response = await API.post("employees", employee)
         return response.data
     } catch (error) {

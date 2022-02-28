@@ -9,6 +9,7 @@ import {
   deleteEmployee,
 } from "./employeeApi";
 import moment from "moment";
+import { Input, Checkbox } from "../../components";
 
 export const Employee: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -114,63 +115,41 @@ export const Employee: React.FC = () => {
             <div className="content">
               <div className="columns">
                 <div className="column is-4">
-                  <div className="control">
-                    <label className="checkbox">
-                      <input
-                        type="checkbox"
-                        name="isActive"
-                        onChange={handleInputChange}
-                        checked={employee.isActive}
-                      />
-                      &nbsp;
-                      <span style={{ fontWeight: "bold", fontSize: "12px" }}>
-                        Active
-                      </span>
-                    </label>
-                  </div>
+                  <Checkbox
+                    title="Active"
+                    name="isActive"
+                    value={employee.isActive}
+                    inputChange={handleInputChange}
+                  />
                 </div>
               </div>
               <div className="columns">
                 <div className="column is-4">
-                  <div className="field">
-                    <label className="label is-small">Name</label>
-                    <div className="control">
-                      <input
-                        type="text"
-                        name="name"
-                        onChange={handleInputChange}
-                        value={employee.name}
-                        className="input is-small"
-                        placeholder="Enter name here"
-                      />
-                    </div>
-                    {employee.name === "" && showValidation ? (
-                      <span className="is-size-7 has-text-centered has-text-danger">
-                        Name is required.
-                      </span>
-                    ) : null}
-                  </div>
+                  <Input
+                    type="text"
+                    title="Name"
+                    name="name"
+                    placeholder="Enter name here"
+                    value={employee.name}
+                    inputChange={handleInputChange}
+                    showValidation={showValidation}
+                  />
                 </div>
                 <div className="column is-4">
-                  <div className="field">
-                    <label className="label is-small">Birthday</label>
-                    <div className="control">
-                      <input
-                        type="date"
-                        name="birthday"
-                        onChange={handleInputChange}
-                        value={employee.birthday}
-                        className="input is-small"
-                      />
-                    </div>
-                  </div>
+                  <Input
+                    type="date"
+                    title="Birthday"
+                    name="birthday"
+                    value={employee.birthday}
+                    inputChange={handleInputChange}
+                  />
                 </div>
               </div>
               <button
                 className={
                   isSaving
-                    ? "button is-success is-loading"
-                    : "button is-success"
+                    ? "button is-success is-loading is-small"
+                    : "button is-success is-small"
                 }
                 onClick={submit}
                 disabled={isSaving}
@@ -179,7 +158,7 @@ export const Employee: React.FC = () => {
               </button>
               &nbsp;
               {employee.employeeId !== 0 && (
-                <button className="button" onClick={resetForm}>
+                <button className="button is-small" onClick={resetForm}>
                   Cancel
                 </button>
               )}
