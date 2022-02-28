@@ -10,7 +10,8 @@ export const employeeSlice = createSlice({
             values: []
         },
         save: {
-            isSaving: false
+            isSaving: false,
+            isDeleting: false
         }
     },
     reducers: {
@@ -51,13 +52,13 @@ export const employeeSlice = createSlice({
             state.save.isSaving = false
         },
         [deleteEmployee.pending.type]: (state, action) => {
-            state.save.isSaving = true
+            state.save.isDeleting = true
         },
         [deleteEmployee.fulfilled.type]: (state, action) => {
-            state.save.isSaving = false
+            state.save.isDeleting = false
         },
         [deleteEmployee.rejected.type]: (state, action) => {
-            state.save.isSaving = false
+            state.save.isDeleting = false
         }
     }
 })
