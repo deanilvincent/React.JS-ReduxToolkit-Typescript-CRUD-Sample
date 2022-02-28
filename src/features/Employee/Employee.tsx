@@ -48,7 +48,7 @@ export const Employee: React.FC = () => {
   };
 
   const selectEmployee = (d: IEmployee) => {
-    setShowValidation(false)
+    setShowValidation(false);
     setEmployee({
       employeeId: d.employeeId,
       name: d.name,
@@ -73,10 +73,10 @@ export const Employee: React.FC = () => {
   const submit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (employee.name === ""){
-      setShowValidation(true)
-      return
-    };
+    if (employee.name === "") {
+      setShowValidation(true);
+      return;
+    }
 
     const action =
       employee.employeeId === 0
@@ -100,14 +100,15 @@ export const Employee: React.FC = () => {
       employeeId: 0,
       name: "",
       isActive: false,
-      birthday: new Date(),
+      birthday: moment(new Date()).format("YYYY-MM-DD"),
     });
-    setShowValidation(false)
+    setShowValidation(false);
   };
 
   return (
     <>
       <div className="form-container">
+        <h1 className="title">Employee</h1>
         <div className="card">
           <div className="card-content">
             <div className="content">
