@@ -64,11 +64,11 @@ export const Employee: React.FC = () => {
       dispatch(deleteEmployee(id))
         .unwrap()
         .then((response) => {
-          toast(response);
+          toast.success(response);
           dispatch(getEmployees());
         })
         .catch((error) => {
-          console.log(error);
+          toast.error(error);
         });
   };
 
@@ -88,12 +88,12 @@ export const Employee: React.FC = () => {
     dispatch(action)
       .unwrap()
       .then((response) => {
-        toast(response);
+        toast.success(response);
         resetForm();
         dispatch(getEmployees());
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   };
 
@@ -112,7 +112,7 @@ export const Employee: React.FC = () => {
       <div className="form-container">
         <h1 className="title">
           Employee &nbsp;
-          <span className="tag is-link">{employeeList.length}</span>
+          <span className="tag is-link">{employeeList?.length}</span>
         </h1>
         <div className="card">
           <div className="card-content">
