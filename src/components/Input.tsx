@@ -15,8 +15,9 @@ export const Input = ({
   placeholder?: string;
   title: string;
   showValidation?: boolean;
-  type: string
+  type: string;
 }) => {
+  const showValidationUi = value === "" && showValidation;
   return (
     <>
       <div className="field">
@@ -27,11 +28,13 @@ export const Input = ({
             name={name}
             onChange={inputChange}
             value={value}
-            className="input is-small"
+            className={
+              showValidationUi ? "input is-small is-danger" : "input is-small"
+            }
             placeholder={placeholder}
           />
         </div>
-        {value === "" && showValidation ? (
+        {showValidationUi ? (
           <span className="is-size-7 has-text-centered has-text-danger">
             Name is required.
           </span>

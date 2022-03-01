@@ -9,7 +9,8 @@ import {
   deleteEmployee,
 } from "./employeeApi";
 import moment from "moment";
-import { Input, Checkbox } from "../../components";
+import { Input, Checkbox, Button } from "../../components";
+import { toast, ToastContainer } from "react-toastify";
 
 export const Employee: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -63,7 +64,7 @@ export const Employee: React.FC = () => {
       dispatch(deleteEmployee(id))
         .unwrap()
         .then((response) => {
-          alert(response);
+          toast(response);
           dispatch(getEmployees());
         })
         .catch((error) => {
@@ -87,7 +88,7 @@ export const Employee: React.FC = () => {
     dispatch(action)
       .unwrap()
       .then((response) => {
-        alert(response);
+        toast(response);
         resetForm();
         dispatch(getEmployees());
       })
@@ -109,7 +110,10 @@ export const Employee: React.FC = () => {
   return (
     <>
       <div className="form-container">
-        <h1 className="title">Employee</h1>
+        <h1 className="title">
+          Employee &nbsp;
+          <span className="tag is-link">{employeeList.length}</span>
+        </h1>
         <div className="card">
           <div className="card-content">
             <div className="content">
@@ -145,22 +149,20 @@ export const Employee: React.FC = () => {
                   />
                 </div>
               </div>
-              <button
-                className={
-                  isSaving
-                    ? "button is-success is-loading is-small"
-                    : "button is-success is-small"
-                }
+              <Button
+                type="is-success"
+                loading={isSaving}
+                title="Submit"
                 onClick={submit}
-                disabled={isSaving}
-              >
-                Submit
-              </button>
+                disabled={isSaving || isDeleting}
+              />
               &nbsp;
               {employee.employeeId !== 0 && (
-                <button className="button is-small" onClick={resetForm}>
-                  Cancel
-                </button>
+                <Button
+                  title="Cancel"
+                  onClick={resetForm}
+                  disabled={isSaving || isDeleting}
+                />
               )}
               <hr />
               {isLoadingTable && (
@@ -184,23 +186,20 @@ export const Employee: React.FC = () => {
                           <td>{d.isActive ? "Active" : "Inactive"}</td>
                           <td>{moment(d.birthday).format("MM/DD/YYYY")}</td>
                           <td>
-                            <button
-                              className="button is-warning is-small"
+                            <Button
+                              type="is-warning"
+                              title="Edit"
                               onClick={() => selectEmployee(d)}
-                            >
-                              Edit
-                            </button>
+                              disabled={isSaving || isDeleting}
+                            />
                             &nbsp;
-                            <button
-                              className={
-                                isDeleting
-                                  ? "button is-danger is-loading is-small"
-                                  : "button is-danger is-small"
-                              }
+                            <Button
+                              type="is-danger"
+                              title="Delete"
+                              loading={isDeleting}
                               onClick={() => removeEmployee(d.employeeId)}
-                            >
-                              Delete
-                            </button>
+                              disabled={isSaving || isDeleting}
+                            />
                           </td>
                         </tr>
                       );
@@ -211,6 +210,7 @@ export const Employee: React.FC = () => {
             </div>
           </div>
         </div>
+        <ToastContainer closeOnClick={true} />
       </div>
     </>
   );
