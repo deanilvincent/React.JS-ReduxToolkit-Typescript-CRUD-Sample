@@ -26,7 +26,53 @@ You can read more from the official documentation: [https://redux-toolkit.js.org
 - [index.tsx](./src/index.tsx) - After creating the store file, we configured the index.tsx to use the `<Provider store={store}>`
 - [components](./src/components) folder - Where we stored our reusable components like Button, Input & Checkbox.
 - [features](./src/features/) folder - Where we add our business modules. In our example, it's the `Employee` folder.
+- [employeeSlice.ts](./src/features/Employee/employeeSlice.ts) - This is where we create a slice with its reducers. You can create multiple slices depending on your requirements and features.
 
+```
+export const employeeSlice = createSlice({
+    name: "employee",
+    initialState: {
+        list: {
+            isLoading: false,
+            status: "",
+            values: []
+        },
+        save: {
+            isSaving: false,
+            isDeleting: false
+        }
+    },
+    reducers: {
+        clearSuccessMessage: (state, payload) => {
+            // TODO: Update state to clear success message
+        }
+    },
+    extraReducers: {
+        [getEmployees.pending.type]: (state, action) => {
+            state.list.status = "pending"
+            state.list.isLoading = true
+        },
+        [getEmployees.fulfilled.type]: (state, { payload }) => {
+            state.list.status = "success"
+            state.list.values = payload
+            state.list.isLoading = false
+        },
+        [getEmployees.rejected.type]: (state, action) => {
+            state.list.status = "failed"
+            state.list.isLoading = false
+        }
+    }
+    ...
+})
+```
+Here's the brief details for the key declared above.
+
+| Key | Description |
+| - | - |
+| `name` | Name of the reducer |
+| `initialState` | Where we declare the initial state of this slice. |
+| `reducers` | We put non-async reducers here. |
+| `extraReducers` | For async reducers like calling a web api endpoints or working with external resources. |
 
 ### Other Packages Used:
 - [Bulma](https://bulma.io/) - User Interface
