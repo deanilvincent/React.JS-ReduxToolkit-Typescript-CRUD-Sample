@@ -4,6 +4,10 @@
 
 This repository provides a basic but dynamic demo & reference for React.JS with Redux Toolkit that performs CRUD (Create, Read, Update & Delete) operations. The project is also using typescript as part of the react template.
 
+[Demo](https://reactjs-ts-crud-with-reduxtoolkit.netlify.app/)
+
+![Demo](./repo-image/demo.gif)
+
 ### Redux Toolkit:
 - **Simple** - Provides good defaults for store setup out of the box, and includes the most commonly used Redux addons built-in.
 - **Opinionated** - 
@@ -12,8 +16,6 @@ This repository provides a basic but dynamic demo & reference for React.JS with 
 - **Effective** - Lets you focus on the core logic your app needs, so you can do more work with less code.
 
 You can read more from the official documentation: [https://redux-toolkit.js.org/](https://redux-toolkit.js.org/)
-
-![Demo](./repo-image/demo.gif)
 
 ### Getting Started
 1. Restore the package by running the `npm i` inside the directory where [package.json](package.json) is stored.
