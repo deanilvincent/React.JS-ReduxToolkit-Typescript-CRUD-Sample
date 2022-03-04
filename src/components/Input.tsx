@@ -8,6 +8,7 @@ export const Input = ({
   title,
   showValidation,
   type,
+  isRequired,
 }: {
   name: string;
   value: any;
@@ -16,6 +17,7 @@ export const Input = ({
   title: string;
   showValidation?: boolean;
   type: string;
+  isRequired?: boolean;
 }) => {
   const showValidationUi = value === "" && showValidation;
   return (
@@ -35,9 +37,11 @@ export const Input = ({
           />
         </div>
         {showValidationUi ? (
-          <span className="is-size-7 has-text-centered has-text-danger">
-            Name is required.
-          </span>
+          isRequired ? (
+            <span className="is-size-7 has-text-centered has-text-danger">
+              {title} is required.
+            </span>
+          ) : null
         ) : null}
       </div>
     </>

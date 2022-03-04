@@ -137,6 +137,7 @@ export const Employee: React.FC = () => {
                     value={employee.name}
                     inputChange={handleInputChange}
                     showValidation={showValidation}
+                    isRequired={true}
                   />
                 </div>
                 <div className="column is-4">
