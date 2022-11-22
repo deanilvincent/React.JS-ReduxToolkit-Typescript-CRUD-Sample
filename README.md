@@ -8,6 +8,8 @@ This repository provides a basic but dynamic demo & reference for React.JS with 
 
 ![Demo](./repo-image/demo.gif)
 
+(Note: Download Redux Dev Tools chrome extension for better visibility of your store: [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en))
+
 ### Redux Toolkit:
 - **Simple** - Provides good defaults for store setup out of the box, and includes the most commonly used Redux addons built-in.
 - **Opinionated** - 
@@ -83,7 +85,7 @@ Here's the brief details for the key declared above.
 - [React-Toastify](https://github.com/fkhadra/react-toastify#readme) - Toast notification
 
 ### Contribute
-Feel free to share, or event clone or fork this project:  `https://github.com/deanilvincent/React.JS-ReduxToolkit-Typescript-CRUD-Sample.git`
+Feel free to share, or even clone or fork this project:  `https://github.com/deanilvincent/React.JS-ReduxToolkit-Typescript-CRUD-Sample.git`
 
 Contribution & pull request is welcome!
 
